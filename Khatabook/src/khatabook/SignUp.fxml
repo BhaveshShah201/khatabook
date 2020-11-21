@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" fx:id="pane" prefHeight="500.0" prefWidth="350.0" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="khatabook.SignUpController">
+   <children>
+      <Button layoutX="317.0" layoutY="4.0" mnemonicParsing="false" onAction="#exit" prefHeight="23.0" prefWidth="21.0" styleClass="togglebutton" textAlignment="CENTER">
+         <graphic>
+            <FontAwesomeIcon iconName="CLOSE" size="20" textAlignment="CENTER" wrappingWidth="10.0">
+               <styleClass>
+                  <String fx:value="parentcolor" />
+                  <String fx:value="togglebutton" />
+               </styleClass>
+            </FontAwesomeIcon>
+         </graphic>
+      </Button>
+      <Button fx:id="backBtn" layoutX="3.0" layoutY="4.0" mnemonicParsing="false" onMouseClicked="#backWndow" prefHeight="23.0" prefWidth="21.0" styleClass="togglebutton" textAlignment="CENTER">
+         <graphic>
+            <FontAwesomeIcon iconName="ARROW_LEFT" size="20" textAlignment="CENTER" wrappingWidth="10.0">
+               <styleClass>
+                  <String fx:value="parentcolor" />
+                  <String fx:value="togglebutton" />
+               </styleClass>
+            </FontAwesomeIcon>
+         </graphic>
+      </Button>
+      <FontAwesomeIcon iconName="USERS" layoutX="158.0" layoutY="43.0" size="35" styleClass="parentcolor" />
+      <Text layoutX="119.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="parentcolor" text="Registration">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Text>
+      <TextField fx:id="mobileTxt" layoutX="60.0" layoutY="159.0" onKeyTyped="#checkMobileNumber" prefHeight="32.0" prefWidth="240.0" promptText="Mobile Number" styleClass="logincontrol">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
+      <FontAwesomeIcon iconName="USER" layoutX="33.0" layoutY="186.0" size="20" styleClass="parentcolor" />
+      <TextField fx:id="emailTxt" layoutX="60.0" layoutY="209.0" prefHeight="32.0" prefWidth="240.0" promptText="Email" styleClass="logincontrol">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
+      <FontAwesomeIcon iconName="ENVELOPE" layoutX="29.0" layoutY="236.0" size="20" styleClass="parentcolor" />
+      <PasswordField fx:id="pwd" layoutX="60.0" layoutY="259.0" prefHeight="32.0" prefWidth="240.0" promptText="Password" styleClass="logincontrol">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </PasswordField>
+      <FontAwesomeIcon iconName="KEY" layoutX="30.0" layoutY="286.0" size="20" styleClass="parentcolor" />
+      <PasswordField fx:id="conPwd" layoutX="60.0" layoutY="309.0" prefHeight="32.0" prefWidth="240.0" promptText="Confirm Password" styleClass="logincontrol">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </PasswordField>
+      <FontAwesomeIcon iconName="KEY" layoutX="29.0" layoutY="336.0" size="20" styleClass="parentcolor" />
+      <Button layoutX="59.0" layoutY="378.0" mnemonicParsing="false" onAction="#register" prefHeight="34.0" prefWidth="240.0" text="Register" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+         <styleClass>
+            <String fx:value="parentcolor" />
+            <String fx:value="buttonstyle" />
+         </styleClass>
+      </Button>
+      <Label fx:id="errorMsg" alignment="CENTER" contentDisplay="CENTER" layoutX="2.0" layoutY="98.0" prefHeight="58.0" prefWidth="350.0" textAlignment="CENTER" textFill="RED">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

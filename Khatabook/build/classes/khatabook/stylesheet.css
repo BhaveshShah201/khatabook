@@ -1,0 +1,58 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 20 Sep, 2020, 6:20:08 PM
+    Author     : ME
+*/
+
+.parentcolor {
+    -fx-background-color:  #0598ff;
+    -fx-fill: #0598ff;
+    -fx-text-fill: #FFF;
+}
+.logincontrol {
+    -fx-background-color: transparent;
+    -fx-border-color:#0598ff;
+    -fx-border-width: 0px 0px 2px 0px;
+}
+
+.anchor:hover
+{
+    -fx-text-fill: #e74c3c;
+    -fx-underline: true;
+}
+.togglebutton
+{
+    -fx-background-color:  transparent;
+}
+.buttonstyle:hover
+{
+    -fx-background-color:  transparent;
+    -fx-text-fill: #0598ff;
+    -fx-border-color: #0984e3;
+    -fx-border-width: 1px;
+    -fx-border-style: solid;
+}
+
+.togglebutton:hover
+{
+    -fx-fill: #e74c3c;
+}
+
+.error {
+    -fx-border-width: 1px;
+    -fx-border-style: solid;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: 10px center;
+    -fx-text-fill: #D63301;
+    -fx-background-color: #FFCCBA;
+    -fx-background-image: url('https://i.imgur.com/GnyDvKN.png');
+}
+
+.error:before{
+    -fx-content: '\f057';
+    -fx-text-fill: #D8000C;
+}
