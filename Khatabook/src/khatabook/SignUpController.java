@@ -24,6 +24,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javax.swing.Timer;
 import khatabook.constant.Constants;
 import khatabook.model.User;
 import khatabook.util.IOUtil;
@@ -67,7 +68,7 @@ public class SignUpController implements Initializable {
     }
 
     @FXML
-    private void backWndow(MouseEvent event) {
+    private void backWindow(MouseEvent event) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("Interface.fxml"));
             Khatabook.stage.getScene().setRoot(root);
@@ -98,7 +99,10 @@ public class SignUpController implements Initializable {
                     FileOutputStream fos = new FileOutputStream(Constants.PATH + Constants.SEPRATOR + hash + Constants.SEPRATOR + hash);
                     IOUtil.serializeAndSaveObject(fos, user, hash);
                     errorMsg.setText(mobileTxt.getText() + " Successfully Registered!!");
-                    backWndow(null);
+                    Timer timer = new Timer(2000, (java.awt.event.ActionEvent e) -> {
+                        backWindow(null);
+                    });
+                    timer.start();
                 } else {
                     errorMsg.setText(mobileTxt.getText() + " Already Registered!!");
                 }
@@ -106,7 +110,7 @@ public class SignUpController implements Initializable {
                 errorMsg.setText(error);
             }
         } catch (IOException ex) {
-            Logger.getLogger(IOUtil.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SignUpController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -116,4 +120,5 @@ public class SignUpController implements Initializable {
             event.consume();
         }
     }
+
 }

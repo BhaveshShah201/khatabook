@@ -30,7 +30,9 @@ import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import khatabook.constant.Constants;
 import khatabook.model.User;
+import khatabook.util.GoogleDriveUtil;
 import khatabook.util.IOUtil;
+import khatabook.util.SyncGoogleDriveUtil;
 import khatabook.util.ValidationUtil;
 
 /**
@@ -86,7 +88,18 @@ public class InterfaceController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        try {
+            Process process = java.lang.Runtime.getRuntime().exec("ping www.google.com");
+            int x = process.waitFor();
+            if (x == 0) {
+                System.out.println("Connection Successful,Output was " + x);
+                SyncGoogleDriveUtil.syncDataWithGoogleDrive();
+            } else {
+                System.out.println("Internet Not Connected,Output was " + x);
+            }
+        } catch (InterruptedException | IOException ex) {
+            Logger.getLogger(InterfaceController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @FXML
@@ -116,5 +129,6 @@ public class InterfaceController implements Initializable {
         if (ValidationUtil.isMobileNumber(event.getCharacter(), mobileTxt.getText())) {
             event.consume();
         }
+
     }
 }

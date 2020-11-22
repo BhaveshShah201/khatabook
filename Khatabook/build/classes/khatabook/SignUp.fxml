@@ -22,7 +22,7 @@
             </FontAwesomeIcon>
          </graphic>
       </Button>
-      <Button fx:id="backBtn" layoutX="3.0" layoutY="4.0" mnemonicParsing="false" onMouseClicked="#backWndow" prefHeight="23.0" prefWidth="21.0" styleClass="togglebutton" textAlignment="CENTER">
+      <Button fx:id="backBtn" layoutX="3.0" layoutY="4.0" mnemonicParsing="false" onMouseClicked="#backWindow" prefHeight="23.0" prefWidth="21.0" styleClass="togglebutton" textAlignment="CENTER">
          <graphic>
             <FontAwesomeIcon iconName="ARROW_LEFT" size="20" textAlignment="CENTER" wrappingWidth="10.0">
                <styleClass>

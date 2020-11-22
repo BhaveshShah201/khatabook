@@ -6,7 +6,6 @@
 package khatabook.util;
 
 import java.util.regex.Pattern;
-import javafx.scene.control.Label;
 
 /**
  *

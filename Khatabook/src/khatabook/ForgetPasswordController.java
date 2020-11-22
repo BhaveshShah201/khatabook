@@ -26,6 +26,7 @@ import javafx.scene.layout.AnchorPane;
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
+import javax.swing.Timer;
 import khatabook.constant.Constants;
 import khatabook.model.User;
 import khatabook.util.IOUtil;
@@ -58,7 +59,7 @@ public class ForgetPasswordController {
     }
 
     @FXML
-    private void backWndow(MouseEvent event) {
+    private void backWindow(MouseEvent event) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("Interface.fxml"));
             Khatabook.stage.getScene().setRoot(root);
@@ -74,6 +75,7 @@ public class ForgetPasswordController {
             error += "\n" + ValidationUtil.validatePwd(oldPwd.getText(), "old");
             error += "\n" + ValidationUtil.validatePwd(pwd.getText(), "");
             error += "\n" + ValidationUtil.validatePwd(conPwd.getText(), "confirm");
+            error += "\n" + ValidationUtil.validateConfirmPwd(pwd.getText(), conPwd.getText());
 
             String hash = IOUtil.getMd5(mobileTxt.getText());
             error = error.trim();
@@ -84,19 +86,25 @@ public class ForgetPasswordController {
                     errorMsg.setText("User " + mobileTxt.getText() + " Not Registered!!");
                 } else {
                     FileInputStream fi = new FileInputStream(Constants.PATH + Constants.SEPRATOR + hash + Constants.SEPRATOR + hash);
-                    user = IOUtil.deserializeAndFetchObject(fi, hash, pwd.getText());
-                    error = ValidationUtil.validateLoginPwd(oldPwd.getText(), user.getMobileNumber(), "old");
+                    user = IOUtil.deserializeAndFetchObject(fi, hash, oldPwd.getText());
+                    error = ValidationUtil.validateLoginPwd(oldPwd.getText(), user.getPassword(), "Old");
                 }
             }
             if (error.equalsIgnoreCase("") && null != user) {
                 user.setPassword(pwd.getText());
                 FileOutputStream fos = new FileOutputStream(Constants.PATH + Constants.SEPRATOR + hash + Constants.SEPRATOR + hash);
                 IOUtil.serializeAndSaveObject(fos, user, hash);
+                errorMsg.setText("Password Reset!!");
+                Timer timer = new Timer(2000, (java.awt.event.ActionEvent e) -> {
+                    backWindow(null);
+                });
+                timer.start();
             } else {
                 errorMsg.setText(error);
             }
-        } catch (IOException | ClassNotFoundException | InvalidKeyException | NoSuchAlgorithmException | BadPaddingException | IllegalBlockSizeException | NoSuchPaddingException ex) {
-            errorMsg.setText("Wrong password. Try again!!");
+        } catch (IOException | ClassNotFoundException | InvalidKeyException | NoSuchAlgorithmException
+                | BadPaddingException | IllegalBlockSizeException | NoSuchPaddingException ex) {
+            errorMsg.setText("Mobile number And Old Password Not Match!!");
             Logger.getLogger(IOUtil.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

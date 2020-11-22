@@ -5,6 +5,8 @@
  */
 package khatabook.util;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -28,6 +30,7 @@ import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SealedObject;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
+import javax.swing.Timer;
 import khatabook.constant.Constants;
 import khatabook.model.User;
 
@@ -70,9 +73,7 @@ public class IOUtil {
             }
         } catch (IOException | InvalidKeyException | NoSuchAlgorithmException | IllegalBlockSizeException | NoSuchPaddingException ex) {
             Logger.getLogger(IOUtil.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        finally
-        {
+        } finally {
             fos.close();
         }
     }
@@ -81,7 +82,7 @@ public class IOUtil {
         // Serialize and save the user 
         User user = new User();
         try {
-            
+
             // generate symmetric key
             SecretKey SecretKey = new SecretKeySpec(Arrays.copyOf(password.getBytes(), 16), Constants.KEY_ALGO);
 
@@ -94,8 +95,7 @@ public class IOUtil {
             ObjectInputStream inputStream = new ObjectInputStream(cipherInputStream);
             SealedObject sealedObject = (SealedObject) inputStream.readObject();
             user = (User) sealedObject.getObject(cipher);
-        }
-        finally{
+        } finally {
             fi.close();
         }
         return user;
